@@ -42,8 +42,25 @@ export const formatDate = (iso) => {
   return `${d.getDate()} ${MONTHS[d.getMonth()]}${sameYear ? '' : ` ${d.getFullYear()}`}`;
 };
 
+/** formatDate for use mid-sentence: "today", "yesterday", "26 Oct". */
+export const formatDateInline = (iso) => {
+  const s = formatDate(iso);
+  return s === 'Today' || s === 'Yesterday' ? s.toLowerCase() : s;
+};
+
 export const formatLongDate = (d = new Date()) =>
   `${WEEKDAYS[d.getDay()]}, ${d.getDate()} ${MONTHS[d.getMonth()]}`;
+
+/** "10:42 am" */
+export const formatTime = (d = new Date()) => {
+  const x = new Date(d);
+  const h = x.getHours();
+  const m = `${x.getMinutes()}`.padStart(2, '0');
+  return `${h % 12 || 12}:${m} ${h < 12 ? 'am' : 'pm'}`;
+};
+
+/** "Today, 10:42 am" / "26 Oct, 4:05 pm" */
+export const formatDateTime = (iso) => `${formatDate(iso)}, ${formatTime(iso)}`;
 
 export const formatInDays = (iso) => {
   const diff = daysBetween(new Date(), iso);

@@ -1,17 +1,23 @@
 {
   "expo": {
-    "name": "OOPSY",
-    "slug": "OOPSY",
+    "name": "Oopsy",
+    "slug": "oopsy",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "backgroundColor": "#FFE45C",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifier": "com.bharani.oopsy",
+      "infoPlist": {
+        "NSFaceIDUsageDescription": "Oopsy uses Face ID to unlock your private diary."
+      }
     },
     "android": {
+      "package": "com.bharani.oopsy",
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#FFE45C",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
@@ -19,6 +25,26 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-secure-store",
+      "expo-font",
+      "expo-sharing",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 160,
+          "backgroundColor": "#FFE45C"
+        }
+      ],
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "Oopsy uses Face ID to unlock your private diary."
+        }
+      ],
+      "expo-notifications"
+    ]
   }
 }

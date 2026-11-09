@@ -1,67 +1,72 @@
+// "Sticker zine": lemon doodle wall, ink outlines, hard offset shadows, riso-bright accents.
 export const colors = {
-  paper: '#F6F5FA',
+  paper: '#FFE45C',
   surface: '#FFFFFF',
-  ink: '#2B2741',
-  inkSoft: '#6B6683',
-  inkFaint: '#A19DB5',
-  line: '#E7E4F0',
-  lavender: '#B7ABF7',
-  lavenderDeep: '#8C7EE8',
-  lavenderSoft: '#ECE8FF',
-  butter: '#FFF4D2',
+  ink: '#1B1033',
+  inkSoft: '#4B3F6B',
+  inkFaint: '#6E6490',
+  line: '#E8C92E',
+  lavender: '#9B7CFF',
+  lavenderDeep: '#5B3FE0',
+  lavenderSoft: '#E7DEFF',
+  butter: '#FFF6BF',
   butterDeep: '#F3DFA0',
-  sun: '#F8CB46',
-  blush: '#F59AA3',
-  blushSoft: '#FDE6E8',
-  mint: '#A8DEC4',
-  mintSoft: '#E3F5EC',
+  sun: '#FF8A3D',
+  blush: '#FF7FB0',
+  blushSoft: '#FFD3E4',
+  mint: '#4FE0A0',
+  mintSoft: '#C6F6DF',
   white: '#FFFFFF',
 };
 
 export const severityColors = {
-  small: { bg: colors.mintSoft, fg: '#2F7A5A', dot: colors.mint },
-  medium: { bg: colors.butter, fg: '#8A6A12', dot: colors.sun },
-  big: { bg: colors.blushSoft, fg: '#A2404B', dot: colors.blush },
+  small: { bg: colors.mintSoft, fg: '#136B47', dot: colors.mint },
+  medium: { bg: '#FFD9B8', fg: '#8A3A00', dot: colors.sun },
+  big: { bg: colors.blushSoft, fg: '#A0173F', dot: colors.blush },
 };
 
 export const fonts = {
-  display: 'Fraunces_600SemiBold',
-  displayRegular: 'Fraunces_400Regular',
-  displayItalic: 'Fraunces_400Regular_Italic',
-  body: 'DMSans_400Regular',
-  bodyMedium: 'DMSans_500Medium',
-  bodyBold: 'DMSans_700Bold',
+  display: 'BricolageGrotesque_800ExtraBold',
+  displayRegular: 'BricolageGrotesque_500Medium',
+  displayItalic: 'Figtree_400Regular_Italic',
+  body: 'Figtree_400Regular',
+  bodyMedium: 'Figtree_500Medium',
+  bodyBold: 'Figtree_700Bold',
+  mono: 'SpaceMono_700Bold',
 };
 
 export const type = {
-  hero: { fontFamily: fonts.display, fontSize: 34, lineHeight: 40, color: colors.ink, letterSpacing: -0.6 },
-  title: { fontFamily: fonts.display, fontSize: 27, lineHeight: 33, color: colors.ink, letterSpacing: -0.4 },
-  heading: { fontFamily: fonts.display, fontSize: 21, lineHeight: 27, color: colors.ink, letterSpacing: -0.2 },
-  quote: { fontFamily: fonts.display, fontSize: 23, lineHeight: 31, color: colors.ink, letterSpacing: -0.2 },
+  hero: { fontFamily: fonts.display, fontSize: 38, lineHeight: 42, color: colors.ink, letterSpacing: -1.2 },
+  title: { fontFamily: fonts.display, fontSize: 30, lineHeight: 34, color: colors.ink, letterSpacing: -0.9 },
+  heading: { fontFamily: fonts.display, fontSize: 21, lineHeight: 26, color: colors.ink, letterSpacing: -0.5 },
+  quote: { fontFamily: fonts.display, fontSize: 23, lineHeight: 28, color: colors.ink, letterSpacing: -0.5 },
   body: { fontFamily: fonts.body, fontSize: 15, lineHeight: 22, color: colors.ink },
   bodySoft: { fontFamily: fonts.body, fontSize: 15, lineHeight: 22, color: colors.inkSoft },
   label: { fontFamily: fonts.bodyMedium, fontSize: 13, lineHeight: 18, color: colors.inkSoft },
-  small: { fontFamily: fonts.body, fontSize: 12, lineHeight: 16, color: colors.inkFaint },
+  small: { fontFamily: fonts.bodyMedium, fontSize: 12, lineHeight: 16, color: colors.inkFaint },
   button: { fontFamily: fonts.bodyBold, fontSize: 16, lineHeight: 20 },
-  number: { fontFamily: fonts.display, fontSize: 36, lineHeight: 40, color: colors.ink, letterSpacing: -1 },
+  number: { fontFamily: fonts.display, fontSize: 40, lineHeight: 44, color: colors.ink, letterSpacing: -1.5 },
 };
 
-export const radius = { sm: 12, md: 20, lg: 28, xl: 36, pill: 999 };
+export const radius = { sm: 10, md: 16, lg: 22, xl: 28, pill: 999 };
 export const space = { xs: 4, sm: 8, md: 12, lg: 16, xl: 24, xxl: 32 };
 
+export const BORDER = 2.5;
+
+// Hard, un-blurred shadows read as a sticker sitting on the page.
 export const shadow = {
   soft: {
-    shadowColor: '#5B4FB0',
-    shadowOpacity: 0.08,
-    shadowRadius: 18,
-    shadowOffset: { width: 0, height: 8 },
-    elevation: 3,
+    shadowColor: colors.ink,
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    shadowOffset: { width: 3, height: 3 },
+    elevation: 0,
   },
   lifted: {
-    shadowColor: '#5B4FB0',
-    shadowOpacity: 0.16,
-    shadowRadius: 24,
-    shadowOffset: { width: 0, height: 12 },
-    elevation: 8,
+    shadowColor: colors.ink,
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    shadowOffset: { width: 5, height: 5 },
+    elevation: 0,
   },
 };

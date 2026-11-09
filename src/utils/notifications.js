@@ -19,6 +19,8 @@ export const ensurePermission = async () => {
     if (Platform.OS === 'android') {
       await Notifications.setNotificationChannelAsync(CHANNEL, {
         name: 'Review reminders',
+        // Re-exported from a .d.ts enum the import plugin can't resolve; it exists at runtime.
+        // eslint-disable-next-line import/namespace
         importance: Notifications.AndroidImportance.DEFAULT,
       });
     }
@@ -42,6 +44,7 @@ const messageFor = (count) =>
  * and rebuild the schedule whenever data or settings change.
  */
 export const rescheduleReminders = async (mistakes, settings) => {
+  if (Platform.OS === 'web') return;
   try {
     await Notifications.cancelAllScheduledNotificationsAsync();
     if (!settings.notificationsEnabled) return;
