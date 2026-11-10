@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { AppState, StyleSheet, View } from 'react-native';
+import { AppState, Platform, StyleSheet, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from 'expo-font';
@@ -22,9 +22,7 @@ function Shell() {
   const [locked, setLocked] = useState(null);
   const backgroundedAt = useRef(null);
 
-  useEffect(() => {
-    if (ready && locked === null) setLocked(settings.pinEnabled);
-  }, [ready, locked, settings.pinEnabled]);
+  const isLocked = locked !== null ? locked : settings.pinEnabled;
 
   useEffect(() => {
     const sub = AppState.addEventListener('change', (state) => {
@@ -42,19 +40,56 @@ function Shell() {
     if (ready) SplashScreen.hideAsync().catch(() => {});
   }, [ready]);
 
-  if (!ready || locked === null) return null;
+  if (!ready) return null;
 
-  return (
+  const content = (
     <View style={{ flex: 1, backgroundColor: colors.paper }} onLayout={onLayout}>
       <RootNavigator />
-      {locked && settings.pinEnabled ? (
+      {isLocked && settings.pinEnabled ? (
         <View style={StyleSheet.absoluteFill}>
           <LockScreen onUnlock={() => setLocked(false)} />
         </View>
       ) : null}
     </View>
   );
+
+  if (Platform.OS === 'web') {
+    return (
+      <View style={styles.webContainer}>
+        <View style={styles.webFrame}>{content}</View>
+      </View>
+    );
+  }
+
+  return content;
 }
+
+const styles = StyleSheet.create({
+  webContainer: {
+    flex: 1,
+    backgroundColor: '#0f1115',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+    width: '100%',
+  },
+  webFrame: {
+    width: '100%',
+    maxWidth: 440,
+    height: '100%',
+    maxHeight: 932,
+    backgroundColor: colors.paper,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: '#22252d',
+    borderRadius: 24,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 16 },
+    shadowOpacity: 0.35,
+    shadowRadius: 32,
+    elevation: 10,
+  },
+});
 
 export default function App() {
   const [fontsLoaded] = useFonts({
